@@ -1,8 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <app-food-form></app-food-form>
-  <app-food-list></app-food-list>
+  <mat-toolbar>
+    <h1 mat-h1>
+      Welcome to {{ title }}!
+    </h1>
+    <button mat-raised-button routerLink="/">home</button>
+    <button mat-raised-button routerLink="/food/add">add food</button>
+    <button mat-raised-button routerLink="/food">view food</button>
+  </mat-toolbar>
+<router-outlet></router-outlet>
+
 </div>

@@ -26,4 +26,5 @@ export class FoodListComponent implements OnInit {
         console.log(foods);
       });
   }
+
 }

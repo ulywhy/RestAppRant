@@ -21,7 +21,15 @@ export class FoodFormComponent {
     description: new FormControl(''),
   });
 
-  getFoods(){
-    return this.foodService.getFoods();
+  saveFood(){
+    let params = this.foodForm.controls;
+
+    let food = new Food(
+        params.name.value,
+        params.price.value,
+        params.description.value
+    );
+
+    this.foodService.saveFood(food);
   }
 }
