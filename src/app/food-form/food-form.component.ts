@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
-import { Food }    from '../food';
+import { FoodService } from '../food.service';
+import { Food } from '../food';
 
 @Component({
   selector: 'app-food-form',
@@ -10,13 +10,18 @@ import { Food }    from '../food';
 })
 export class FoodFormComponent {
 
+  constructor(
+    private foodService: FoodService){
+
+  }
+
   foodForm = new FormGroup({
     name: new FormControl(''),
-    price: new FormControl(0.0),
+    price: new FormControl(''),
     description: new FormControl(''),
   });
 
-  saveFood(){
-    console.log(this.foodForm.controls.name.value);
+  getFoods(){
+    return this.foodService.getFoods();
   }
 }

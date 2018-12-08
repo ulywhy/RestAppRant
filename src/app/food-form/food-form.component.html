@@ -10,7 +10,10 @@
     <p>
       <mat-form-field [floatLabel]="auto">
         <mat-label>Price</mat-label>
-        <input matInput ng-pattern="\\d+" formControlName="price" type="number" class="example-right-align">
+        <input matInput ng-pattern="\\d+" 
+            formControlName="price"
+            type="number"
+            class="example-right-align">
         <span matPrefix>$&nbsp;</span>
       </mat-form-field>
     </p>

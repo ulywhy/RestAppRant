@@ -1,0 +1,6 @@
+<mat-grid-list cols="4">
+  <mat-grid-tile
+    *ngFor="let food of foods">
+      <app-food-display [food]='food'></app-food-display>
+  </mat-grid-tile>
+</mat-grid-list>
