@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FoodService } from '../food.service';
+import { Food } from '../food';
 
 @Component({
   selector: 'app-order-display',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderDisplayComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  foods: Food[];
+  
+  constructor(
+    private foodService: FoodService) {
   }
 
+  ngOnInit() {
+    this.getFood();
+  }
+
+  getOrder(){}
+
+  getFood(){
+    this.foodService.getFoods()
+    .subscribe(foods => this.foods = foods);
+  }
 }

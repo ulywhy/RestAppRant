@@ -1,3 +1,18 @@
-<p>
-  order-display works!
-</p>
+<mat-grid-list cols="8">
+
+  <mat-grid-list cols="4">
+    <mat-grid-tile>
+        order 1
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+  <mat-grid-list cols="4">
+    <mat-grid-tile
+      *ngFor="let food of foods">
+        <app-food-display [food]='food'></app-food-display>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+</mat-grid-list>

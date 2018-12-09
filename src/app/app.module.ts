@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
 /* material animation */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+/* icons */
+import {MatIconModule} from '@angular/material/icon';
 /* material modules */
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -20,11 +22,15 @@ import {MatInputModule} from '@angular/material';
 import { MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
+
 /* Custom components */
 import { FoodFormComponent } from './food-form/food-form.component';
 import { FoodListComponent } from './food-list/food-list.component';
 import { FoodDisplayComponent } from './food-display/food-display.component';
 import { OrderDisplayComponent } from './order-display/order-display.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +38,13 @@ import { OrderDisplayComponent } from './order-display/order-display.component';
     FoodFormComponent,
     FoodListComponent,
     FoodDisplayComponent,
-    OrderDisplayComponent
-  ],
+    OrderDisplayComponent,
+    NavBarComponent,
+    OrderListComponent,
+    ],
   imports: [
+    MatIconModule,
+    MatMenuModule,
     MatToolbarModule,
     MatCardModule,
     MatGridListModule,
@@ -52,4 +62,7 @@ import { OrderDisplayComponent } from './order-display/order-display.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+
+}
