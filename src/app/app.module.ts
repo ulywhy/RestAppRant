@@ -24,6 +24,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
 
 /* Custom components */
 import { FoodFormComponent } from './food-form/food-form.component';
@@ -33,6 +36,7 @@ import { OrderDisplayComponent } from './order-display/order-display.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { FoodSelectComponent } from './food-select/food-select.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +48,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
     NavBarComponent,
     OrderListComponent,
     WelcomeComponent,
+    FoodSelectComponent,
     ],
   imports: [
+    MatTableModule,
+    MatListModule,
+    MatExpansionModule,
     MatDividerModule,
     MatIconModule,
     MatMenuModule,

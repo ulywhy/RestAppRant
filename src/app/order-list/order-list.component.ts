@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../order.service';
+import { Order } from '../order';
 
 @Component({
   selector: 'app-order-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderListComponent implements OnInit {
 
-  constructor() { }
+  orders: Order[];
+  columnsToDisplay = ['quantity', 'food', 'subtotal'];
+
+  constructor(
+    private orderService : OrderService) {
+
+    }
 
   ngOnInit() {
+    this.getOrders();
+  }
+
+  getOrders(){
+    this.orderService.getOrders()
+    .subscribe(orders => {
+      this.orders = orders;
+    });
   }
 
 }

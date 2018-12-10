@@ -12,7 +12,7 @@ export class Order {
   }
 
   addItem(item: Item){
-    this.item.push(item);
+    this.items.push(item);
   }
 
   addItems(items: Item[]){
