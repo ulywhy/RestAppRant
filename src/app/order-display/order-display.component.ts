@@ -10,7 +10,7 @@ import { Food } from '../food';
 export class OrderDisplayComponent implements OnInit {
 
   foods: Food[];
-  
+
   constructor(
     private foodService: FoodService) {
   }
@@ -21,8 +21,11 @@ export class OrderDisplayComponent implements OnInit {
 
   getOrder(){}
 
+
   getFood(){
     this.foodService.getFoods()
-    .subscribe(foods => this.foods = foods);
+    .subscribe(foods => {
+      this.foods = foods;
+    });
   }
 }

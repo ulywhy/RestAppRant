@@ -1,13 +1,45 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>{{food.name}}</mat-card-title>
-    <mat-card-subtitle>${{food.price}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>{{food.description}}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <!--button mat-button>LIKE</button>
-    <button mat-button>SHARE</button-->
-  </mat-card-actions>
-</mat-card>
+<div>
+<div mat-dialog-title>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <!--div mat-card-avatar class="example-header-image"></div-->
+      <mat-card-title class="dont-break-out">{{data.food.name}}</mat-card-title>
+      <mat-card-subtitle>
+        <span matPrefix>$&nbsp;</span>
+        {{data.food.price}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <!--img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"-->
+    <mat-card-content>
+      <p>
+        {{data.food.description}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <input [ngModel]="data.subtotal"
+          matInput disabled
+          placeholder="subtotal">
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="data.count"
+    matInput cdkFocusInitial
+    (keyup)="updateItem()"
+    (keydown)="submitItem($event)"
+    placeholder="quantity"
+    type="number">
+    <button mat-button *ngIf="data.count != 0"
+    matSuffix mat-icon-button
+    aria-label="Clear" (click)="data.count = 0">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button color="warn" [mat-dialog-close]="null">Cancel</button>
+</div>

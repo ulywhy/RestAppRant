@@ -4,13 +4,13 @@
     <p>
       <mat-form-field [floatLabel]='auto'>
         <mat-label>Name</mat-label>
-        <input matInput formControlName="name">
+        <input #foodName matInput formControlName="name">
     </mat-form-field>
     </p>
     <p>
-      <mat-form-field [floatLabel]="auto">
+      <mat-form-field [floatLabel]='auto'>
         <mat-label>Price</mat-label>
-        <input matInput ng-pattern="\\d+" 
+        <input matInput
             formControlName="price"
             type="number"
             class="example-right-align">

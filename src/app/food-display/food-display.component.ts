@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Food } from '../food';
+import { Component, OnInit, Inject } from '@angular/core';
+import {NgForm} from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-food-display',
@@ -8,11 +11,33 @@ import { Food } from '../food';
 })
 export class FoodDisplayComponent implements OnInit {
 
-  @Input() food: Food;
-  
-  constructor() { }
+
+
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Item,
+    public dialogRef: MatDialogRef<FoodDisplayComponent>) {}
+
+
 
   ngOnInit() {
   }
+
+  updateItem(){
+    this.data.updateSubtotal();
+  }
+
+
+  submitItem(event) {
+    if(event.keyCode == 13) {
+      this.closeDialog();
+    }
+  }
+
+  closeDialog(): void{
+    this.dialogRef.close(this.data);
+  }
+
+
 
 }

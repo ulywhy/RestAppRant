@@ -5,11 +5,16 @@ export class Food {
     price: number,
     description: string){
       this.name = name;
-      this.price = price;
+      this._price = price;
       this.description = description;
 
   }
+
   name: string;
-  price: number;
+  _price: number;
   description: string;
+
+  get price(): number{
+    return this.price;
+  }
 }

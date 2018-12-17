@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FoodService } from '../food.service';
 import { Food } from '../food';
@@ -8,7 +8,9 @@ import { Food } from '../food';
   templateUrl: './food-form.component.html',
   styleUrls: ['./food-form.component.css']
 })
+
 export class FoodFormComponent {
+  @ViewChild('foodName') foodNameRef: ElementRef;
 
   constructor(
     private foodService: FoodService){
@@ -31,5 +33,8 @@ export class FoodFormComponent {
     );
 
     this.foodService.saveFood(food);
+    this.foodForm.reset();
+    this.foodNameRef.nativeElement.focus();
+
   }
 }

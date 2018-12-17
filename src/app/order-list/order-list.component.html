@@ -2,20 +2,20 @@
 
 <mat-toolbar>
   <span class="spacer"></span>
-  <button mat-raised-button color="basic"
-        (click)="createOrder()">
+  <a mat-raised-button color="basic"
+     routerLink="/order/new">
      new order
-   </button>
+  </a>
 </mat-toolbar>
 
 <mat-accordion>
   <mat-expansion-panel *ngFor="let order of orders">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Order {{order.number}}
+        Order #{{order.number}}
       </mat-panel-title>
       <mat-panel-description>
-        ${{order.total}}
+        Total: ${{order.total}}
       </mat-panel-description>
     </mat-expansion-panel-header>
 
