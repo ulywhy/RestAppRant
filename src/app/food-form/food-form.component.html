@@ -2,13 +2,13 @@
   <form [formGroup]="foodForm">
     <h1>Food Form</h1>
     <p>
-      <mat-form-field [floatLabel]='auto'>
+      <mat-form-field>
         <mat-label>Name</mat-label>
         <input #foodName matInput formControlName="name">
     </mat-form-field>
     </p>
     <p>
-      <mat-form-field [floatLabel]='auto'>
+      <mat-form-field>
         <mat-label>Price</mat-label>
         <input matInput
             formControlName="price"
@@ -18,7 +18,7 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field [floatLabel]='auto'>
+      <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea matInput cdkTextareaAutosize formControlName="description"
                 #autosize="cdkTextareaAutosize"

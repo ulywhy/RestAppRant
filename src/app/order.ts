@@ -4,11 +4,11 @@ export class Order {
 
   number: number;
   private _total: number;
-  items: Set;
+  items: Set<Item>;
 
   constructor(){
     this.number = 0;
-    this.items = new Set([]);
+    this.items = new Set<Item>([]);
   }
 
   addItem(item: Item){
