@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class OrderService {
 
-  orderUrl = 'http://192.168.1.68:5656/rest/order';
+  orderUrl = 'https://rest-app-rant-server.herokuapp.com/rest/order';
 
   constructor(
     private http : HttpClient) {

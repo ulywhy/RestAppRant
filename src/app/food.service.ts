@@ -14,9 +14,7 @@ const httpOptions = {
 
 export class FoodService {
 
-  serverIp = '192.168.1.68';
-  serverPort = '5656';
-  foodUrl = 'http://' + this.serverIp + ':' + this.serverPort + '/rest/food';
+  foodUrl = 'https://rest-app-rant-server.herokuapp.com/rest/food';
 
   constructor(
   private http: HttpClient) {
