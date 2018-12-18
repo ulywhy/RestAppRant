@@ -31,7 +31,7 @@ export class FoodFormComponent {
         params.price.value,
         params.description.value
     );
-
+    
     this.foodService.saveFood(food);
     this.foodForm.reset();
     this.foodNameRef.nativeElement.focus();

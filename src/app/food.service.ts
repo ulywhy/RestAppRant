@@ -26,6 +26,7 @@ export class FoodService {
 
   saveFood(food:Food){
     console.log("sending post");
+    console.log(food);
     this.http.post(this.foodUrl, food, httpOptions).subscribe(
         res => {
           console.log(res);
