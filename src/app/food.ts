@@ -9,7 +9,7 @@ export class Food {
       this.description = description;
 
   }
-
+  _id : string;
   name: string;
   price: number;
   description: string;

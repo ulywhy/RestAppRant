@@ -8,7 +8,7 @@ export class Item {
   constructor(
     food: Food){
       this.food = food;
-      this.count = 0.0;
+      this._count = 0.0;
       this._subtotal = 0.0;
   }
 

@@ -14,11 +14,11 @@ const httpOptions = {
 
 export class OrderService {
 
-  orderUrl = 'https://rest-app-rant-server.herokuapp.com/rest/order';
+  //orderUrl = 'https://rest-app-rant-server.herokuapp.com/rest/order';
+  orderUrl = 'http://192.168.1.68:5656/rest/order';
 
   constructor(
     private http : HttpClient) {
-
   }
 
   getOrders(){
@@ -26,13 +26,18 @@ export class OrderService {
   }
 
   saveOrder(order: Order){
-    console.log("sending order post");
-    this.http.post(this.orderUrl, order, httpOptions).subscribe(
+    console.log(order);
+    this.http.post(this.orderUrl, {
+      order: {
+        number: order.number,
+        total: order.total,
+        items: Array.from(order.items.values())
+      }}, httpOptions).subscribe(
         res => {
           console.log(res);
         },
         err => {
-          console.log("Error occured");
+          console.log(err);
         }
     );
   }
