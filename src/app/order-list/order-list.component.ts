@@ -34,6 +34,7 @@ export class OrderListComponent implements OnInit {
       this.orders = orders;
       console.log(this.orders);
     });
+    console.log(this.orders);
   }
 
 }
