@@ -21,8 +21,12 @@ export class OrderService {
     private http : HttpClient) {
   }
 
-  getOrders(){
-    return this.http.get<Order[]>(this.orderUrl);
+  getOrders(status: string[]){
+    return this.http.get<Order[]>(this.orderUrl, {
+      'params' : {
+        'status' : status
+      }
+    });
   }
 
   saveOrder(order: Order){

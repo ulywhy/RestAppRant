@@ -29,12 +29,11 @@ export class OrderListComponent implements OnInit {
   }
 
   getOrders(){
-    this.orderService.getOrders()
+    this.orderService.getOrders(['served', 'waiting'])
     .subscribe(orders => {
       this.orders = orders;
       console.log(this.orders);
     });
-    console.log(this.orders);
   }
 
 }
