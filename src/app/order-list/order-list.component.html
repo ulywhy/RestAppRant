@@ -37,10 +37,13 @@
 
       <mat-action-row>
         <span>{{order.date | date : 'EE M, hh:mm a' }}</span>
-        <button mat-button color="primary" (click)="nextStep()">
+        <div  *ngIf="order.status !== 'paid'">
+        <!--button mat-button color="primary" (click)="nextStep()">
           <mat-icon>add</mat-icon>
-        </button>
-          <button mat-button color="primary" (click)="checkout(order)">checkout</button>
+        </button!-->
+        <button mat-button color="primary" (click)="checkout(order)">checkout</button>
+        <button mat-button color="primary" *ngIf="order.status === 'waiting'" (click)="served(order)">served</button>
+      </div>
       </mat-action-row>
 
   </mat-expansion-panel>

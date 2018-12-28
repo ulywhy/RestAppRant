@@ -14,8 +14,8 @@ const httpOptions = {
 
 export class OrderService {
 
-  orderUrl = 'https://rest-app-rant-client.herokuapp.com/rest/order';
-  //orderUrl = 'http://192.168.1.68:5656/rest/order';
+  //orderUrl = 'https://rest-app-rant-client.herokuapp.com/rest/order';
+  orderUrl = 'http://192.168.1.68:5656/rest/order';
 
   constructor(
     private http : HttpClient) {
@@ -46,13 +46,13 @@ export class OrderService {
     );
   }
 
-  orderCheckout(order : Order){
+  orderUpdate(order : Order){
     console.log("updating order");
     console.log(order);
     this.http.put(this.orderUrl, {
       order: {
         _id: order._id,
-        status: "paid",
+        status: order.status,
         number: order.number,
         total: order.total,
         items: Array.from(order.items.values())

@@ -39,7 +39,13 @@ export class OrderListComponent implements OnInit {
   checkout(order : Order){
     order.status = "paid";
     this.orders.splice(this.orders.indexOf(order), 1);
-    this.orderService.orderCheckout(order);
+    this.orderService.orderUpdate(order);
+  }
+
+  served(order : Order){
+    order.status = "served";
+    this.orders.splice(this.orders.indexOf(order), 1);
+    this.orderService.orderUpdate(order);
   }
 
 }
