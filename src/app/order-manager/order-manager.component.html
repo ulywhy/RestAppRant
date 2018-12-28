@@ -1,0 +1,29 @@
+<mat-tab-group ng-style="position=sticky">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">schedule</mat-icon>
+      waiting
+    </ng-template>
+    <ng-template matTabContent>
+      <app-order-list [status]="'waiting'"></app-order-list>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon  class="tab-icon">fastfood</mat-icon>
+      served
+    </ng-template>
+    <ng-template matTabContent>
+      <app-order-list [status]="'served'"></app-order-list>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon  class="tab-icon">monetization_on</mat-icon>
+      paid
+    </ng-template>
+    <ng-template matTabContent>
+      <app-order-list [status]="'paid'"></app-order-list>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

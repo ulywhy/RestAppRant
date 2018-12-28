@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FoodSelectComponent } from '../food-select/food-select.component';
 import { FoodDisplayComponent } from '../food-display/food-display.component';
 import { OrderService } from '../order.service';
@@ -12,6 +12,7 @@ import { Order } from '../order';
 
 export class OrderListComponent implements OnInit {
 
+  @Input() status: string;
   newOrder: Order;
   orders: Order[];
 
@@ -19,7 +20,6 @@ export class OrderListComponent implements OnInit {
 
   constructor(
     private orderService : OrderService) {
-
   }
 
 
@@ -29,11 +29,17 @@ export class OrderListComponent implements OnInit {
   }
 
   getOrders(){
-    this.orderService.getOrders(['served', 'waiting'])
+    this.orderService.getOrders(this.status)
     .subscribe(orders => {
       this.orders = orders;
       console.log(this.orders);
     });
+  }
+
+  checkout(order : Order){
+    order.status = "paid";
+    this.orders.splice(this.orders.indexOf(order), 1);
+    this.orderService.orderCheckout(order);
   }
 
 }

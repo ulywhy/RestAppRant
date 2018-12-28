@@ -1,18 +1,10 @@
 <mat-divider></mat-divider>
 
-<mat-toolbar>
-  <span class="spacer"></span>
-  <a mat-raised-button color="basic"
-     routerLink="/order/new">
-     new order
-  </a>
-</mat-toolbar>
-
 <mat-accordion>
   <mat-expansion-panel *ngFor="let order of orders">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Order #{{order.number}}
+        #{{order.number}}
       </mat-panel-title>
       <mat-panel-description>
         Total: ${{order.total}}
@@ -44,10 +36,11 @@
 
 
       <mat-action-row>
+        <span>{{order.date | date : 'EE M, hh:mm a' }}</span>
         <button mat-button color="primary" (click)="nextStep()">
           <mat-icon>add</mat-icon>
         </button>
-          <button mat-button color="primary" (click)="checkout()">checkout</button>
+          <button mat-button color="primary" (click)="checkout(order)">checkout</button>
       </mat-action-row>
 
   </mat-expansion-panel>

@@ -2,9 +2,12 @@ import { Item } from './item';
 
 export class Order {
 
+  _id: any;
   number: number;
   private _total: number;
   items: Set<Item>;
+  status: string;
+  date: any;
 
   constructor(){
     this.number = 0;

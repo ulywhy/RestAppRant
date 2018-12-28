@@ -58,8 +58,7 @@ export class FoodSelectComponent implements OnInit {
   }
 
   saveOrder(){
-    console.log(this._order);
     this.orderService.saveOrder(this._order);
-    
+
   }
 }

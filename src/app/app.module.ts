@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 /* icons */
 import {MatIconModule} from '@angular/material/icon';
 /* material modules */
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
@@ -31,6 +32,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatBadgeModule} from '@angular/material/badge';
 
 /* Custom components */
 import { FoodFormComponent } from './food-form/food-form.component';
@@ -42,6 +44,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { FoodSelectComponent } from './food-select/food-select.component';
 import { FoodSelectSnackComponent } from './food-select-snack/food-select-snack.component';
 import { OrderCreateComponent } from './order-create/order-create.component';
+import { OrderManagerComponent } from './order-manager/order-manager.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +58,11 @@ import { OrderCreateComponent } from './order-create/order-create.component';
     FoodSelectComponent,
     FoodSelectSnackComponent,
     OrderCreateComponent,
+    OrderManagerComponent,
   ],
   imports: [
+    MatBadgeModule,
+    MatTabsModule,
     FormsModule,
     MatDialogModule,
     MatSnackBarModule,

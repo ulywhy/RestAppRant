@@ -14,14 +14,14 @@ const httpOptions = {
 
 export class OrderService {
 
-  //orderUrl = 'https://rest-app-rant-server.herokuapp.com/rest/order';
-  orderUrl = 'http://192.168.1.68:5656/rest/order';
+  orderUrl = 'https://rest-app-rant-server.herokuapp.com/rest/order';
+  //orderUrl = 'http://192.168.1.68:5656/rest/order';
 
   constructor(
     private http : HttpClient) {
   }
 
-  getOrders(status: string[]){
+  getOrders(status: string){
     return this.http.get<Order[]>(this.orderUrl, {
       'params' : {
         'status' : status
@@ -44,6 +44,27 @@ export class OrderService {
           console.log(err);
         }
     );
+  }
+
+  orderCheckout(order : Order){
+    console.log("updating order");
+    console.log(order);
+    this.http.put(this.orderUrl, {
+      order: {
+        _id: order._id,
+        status: "paid",
+        number: order.number,
+        total: order.total,
+        items: Array.from(order.items.values())
+      }
+    }, httpOptions).subscribe(
+      res => {
+        return res;
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
 }
