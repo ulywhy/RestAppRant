@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class FoodService {
 
-  foodUrl = 'https://rest-app-rant-server.herokuapp.com/rest/food';
+  foodUrl = 'https://rest-app-rant-client.herokuapp.com/rest/food';
   //foodUrl = 'http://192.168.1.68:5656/rest/food';
 
   constructor(
