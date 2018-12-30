@@ -21,50 +21,30 @@ export class OrderService {
     private http : HttpClient) {
   }
 
-  getOrders(status: string){
+  getOrders(query : any){
     return this.http.get<Order[]>(this.orderUrl, {
-      'params' : {
-        'status' : status
-      }
+      'params' : query
     });
   }
 
   saveOrder(order: Order){
-    console.log(order);
-    this.http.post(this.orderUrl, {
-      order: {
-        number: order.number,
-        total: order.total,
-        items: Array.from(order.items.values())
-      }}, httpOptions).subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err);
-        }
-    );
+    console.log(order)
+    return this.http.post(this.orderUrl, order, httpOptions);
   }
 
   orderUpdate(order : Order){
     console.log("updating order");
     console.log(order);
-    this.http.put(this.orderUrl, {
+    return this.http.put(this.orderUrl, {
       order: {
         _id: order._id,
-        status: order.status,
+        paid: order.paid,
+        served: order.served,
         number: order.number,
         total: order.total,
         items: Array.from(order.items.values())
       }
-    }, httpOptions).subscribe(
-      res => {
-        return res;
-      },
-      err => {
-        console.log(err);
-      }
-    )
+    }, httpOptions);
   }
 
 }

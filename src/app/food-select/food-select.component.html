@@ -20,7 +20,7 @@
     <td mat-cell *matCellDef="let item"> {{item.subtotal > 0 ? (item.subtotal | currency) : ""}} </td>
     <td mat-footer-cell *matFooterCellDef>
       <button mat-button color="primary" [disabled]="order.items.size === 0">
-        <mat-icon routerLink="/order" (click)="saveOrder()">check</mat-icon>
+        <mat-icon (click)="saveOrder()">check</mat-icon>
       </button>
     </td>
   </ng-container>

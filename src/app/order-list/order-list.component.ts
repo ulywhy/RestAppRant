@@ -12,7 +12,8 @@ import { Order } from '../order';
 
 export class OrderListComponent implements OnInit {
 
-  @Input() status: string;
+  @Input() served : boolean = null;
+  @Input() paid : boolean = null;
   newOrder: Order;
   orders: Order[];
 
@@ -29,23 +30,37 @@ export class OrderListComponent implements OnInit {
   }
 
   getOrders(){
-    this.orderService.getOrders(this.status)
+    let query = {};
+
+    if(this.served !== null) query.served = this.served;
+    if(this.paid !== null) query.paid = this.paid;
+
+    this.orderService.getOrders(query)
     .subscribe(orders => {
       this.orders = orders;
       console.log(this.orders);
     });
   }
 
-  checkout(order : Order){
-    order.status = "paid";
-    this.orders.splice(this.orders.indexOf(order), 1);
-    this.orderService.orderUpdate(order);
+  onCheckout(order : Order){
+    order.paid = true;
+    this.updateOrder(order);
   }
 
-  served(order : Order){
-    order.status = "served";
-    this.orders.splice(this.orders.indexOf(order), 1);
-    this.orderService.orderUpdate(order);
+  onServed(order : Order){
+    order.served = true;
+    this.updateOrder(order);
+  }
+
+  updateOrder(order : Order){
+    this.orderService.orderUpdate(order).subscribe(
+      res => {
+        this.getOrders();
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Router } from '@angular/router';
 import {MatTable} from '@angular/material';
 import { FoodDisplayComponent } from '../food-display/food-display.component';
 import { OrderService } from '../order.service';
@@ -25,7 +26,8 @@ export class FoodSelectComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private router : Router) {
       this._order = new Order();
   }
 
@@ -58,7 +60,9 @@ export class FoodSelectComponent implements OnInit {
   }
 
   saveOrder(){
-    this.orderService.saveOrder(this._order);
+    this.orderService.saveOrder(this._order).subscribe(data => {
+      this.router.navigate(['/order']);
+    });
 
   }
 }
