@@ -41,6 +41,9 @@
         <!--button mat-button color="primary" (click)="nextStep()">
           <mat-icon>add</mat-icon>
         </button!-->
+        <button mat-button *ngIf="!order.paid && !order.served" (click)="onDelete(order)">
+          <mat-icon color="accent">delete</mat-icon>
+        </button>
         <button mat-button color="primary" *ngIf="!order.paid" (click)="onCheckout(order)">checkout</button>
         <button mat-button color="primary" *ngIf="!order.served" (click)="onServed(order)">served</button>
       </div>

@@ -35,16 +35,14 @@ export class OrderService {
   orderUpdate(order : Order){
     console.log("updating order");
     console.log(order);
-    return this.http.put(this.orderUrl, {
-      order: {
-        _id: order._id,
-        paid: order.paid,
-        served: order.served,
-        number: order.number,
-        total: order.total,
-        items: Array.from(order.items.values())
-      }
-    }, httpOptions);
+    return this.http.put(this.orderUrl, order, httpOptions);
+  }
+
+  delete(order : Order){
+    console.log("deleting")
+    console.log(order);
+    return this.http.delete(this.orderUrl + '/' + order._id, httpOptions);
+
   }
 
 }

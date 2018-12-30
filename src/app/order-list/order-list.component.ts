@@ -52,6 +52,20 @@ export class OrderListComponent implements OnInit {
     this.updateOrder(order);
   }
 
+  onDelete(order : Order){
+    this.orderService.delete(order).subscribe(
+      res => {
+        //show warning message(ask if really wants to delete order)
+        this.getOrders();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+
+
   updateOrder(order : Order){
     this.orderService.orderUpdate(order).subscribe(
       res => {
