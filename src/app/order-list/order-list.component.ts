@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FoodSelectComponent } from '../food-select/food-select.component';
-import { FoodDisplayComponent } from '../food-display/food-display.component';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { OrderService } from '../order.service';
 import { Order } from '../order';
 
@@ -20,7 +21,8 @@ export class OrderListComponent implements OnInit {
   columnsToDisplay = ['quantity', 'food', 'subtotal'];
 
   constructor(
-    private orderService : OrderService) {
+    private orderService : OrderService,
+    public paymentDialog: MatDialog) {
   }
 
 
@@ -43,8 +45,7 @@ export class OrderListComponent implements OnInit {
   }
 
   onCheckout(order : Order){
-    order.paid = true;
-    this.updateOrder(order);
+    this.openDialog(order);
   }
 
   onServed(order : Order){
@@ -64,8 +65,6 @@ export class OrderListComponent implements OnInit {
     );
   }
 
-
-
   updateOrder(order : Order){
     this.orderService.orderUpdate(order).subscribe(
       res => {
@@ -77,4 +76,21 @@ export class OrderListComponent implements OnInit {
     );
   }
 
+  openDialog(order : Order) {
+
+    const dialogRef = this.paymentDialog.open(PaymentDialogComponent, {
+      width: '100vw',
+      data: order,
+      disableClose : true,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        order.paid = true;
+        console.log(result);
+        this.updateOrder(order);
+        console.log(order);
+      }
+    });
+  }
 }

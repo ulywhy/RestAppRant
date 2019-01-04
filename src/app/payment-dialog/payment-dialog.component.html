@@ -1,0 +1,41 @@
+<div>
+<div mat-dialog-title>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <!--div mat-card-avatar class="example-header-image"></div-->
+      <mat-card-title class="dont-break-out">Order #{{data.number}}</mat-card-title>
+      <mat-card-subtitle>
+        {{data.total | currency}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <!--img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"-->
+  </mat-card>
+</div>
+
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="payment"
+    matInput cdkFocusInitial
+    (keyup)="updatePayment()"
+    (keydown)="submitPayment($event)"
+    placeholder="payment"
+    type="number">
+    <!-- field clear button !-->
+    <button mat-button *ngIf="data.count != 0"
+      matSuffix mat-icon-button
+      aria-label="Clear" (click)="data.count = 0">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field>
+    <input [ngModel]="change | currency:'USD':'symbol':'1.2'"
+    matInput disabled
+    placeholder="change">
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button color="warn" [mat-dialog-close]="null">Cancel</button>
+  <button mat-button color="primary" (click)="checkout()" [disabled]="!ready">Checkout</button>
+</div>
