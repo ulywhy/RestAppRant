@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
 import {MatTable} from '@angular/material';
 import { FoodDisplayComponent } from '../food-display/food-display.component';
 import { OrderService } from '../order.service';
+import { FoodService } from '../food.service';
 import { Order } from '../order';
 import { Item } from '../item';
 
@@ -17,7 +18,7 @@ export class FoodSelectComponent implements OnInit {
   _order : Order;
   currentItem: Item;
   selectedItems : Item[];
-  @Input() items: Item[];
+  items: Item[];
   data : Item[];
 
   //table
@@ -26,16 +27,24 @@ export class FoodSelectComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
+    private foodService: FoodService,
     public dialog: MatDialog,
     private router : Router) {
       this._order = new Order();
   }
 
   ngOnInit() {
+    this.getFoods();
   }
 
   get order(){
     return this._order
+  }
+
+  getFoods(){
+    this.foodService.getFoods().subscribe(foods => {
+      this.items = foods.map(food => new Item(food));
+    });
   }
 
   getTotalCost(): number{

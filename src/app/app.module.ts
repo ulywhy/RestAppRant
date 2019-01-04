@@ -42,7 +42,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FoodSelectComponent } from './food-select/food-select.component';
-import { OrderCreateComponent } from './order-create/order-create.component';
 import { OrderManagerComponent } from './order-manager/order-manager.component';
 import { FoodListComponent } from './food-list/food-list.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
@@ -57,7 +56,6 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
     OrderListComponent,
     WelcomeComponent,
     FoodSelectComponent,
-    OrderCreateComponent,
     OrderManagerComponent,
     FoodListComponent,
     PaymentDialogComponent,
