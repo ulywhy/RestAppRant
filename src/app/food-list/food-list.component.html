@@ -1,0 +1,22 @@
+<mat-accordion>
+  <mat-expansion-panel  *ngFor="let food of foods | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{food.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{food.price | currency : '' : digitsInfo : '1.2-2'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-action-row>
+      <button mat-button (click)="onDelete(food)">
+        <mat-icon color="accent">delete</mat-icon>
+      </button>
+      <button mat-button color="primary" (click)="onEdit(food)">
+        <mat-icon color="accent">edit</mat-icon>
+      </button>
+    </mat-action-row>
+
+  </mat-expansion-panel>
+</mat-accordion>

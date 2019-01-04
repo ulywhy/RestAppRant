@@ -30,7 +30,7 @@ export class OrderListComponent implements OnInit {
   }
 
   getOrders(){
-    let query = {};
+    let query:any = {};
 
     if(this.served !== null) query.served = this.served;
     if(this.paid !== null) query.paid = this.paid;

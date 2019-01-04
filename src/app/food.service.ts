@@ -38,4 +38,15 @@ export class FoodService {
         }
     );
   }
+
+  foodUpdate(food : Food){
+    console.log("updating food");
+    console.log(food);
+    return this.http.put(this.foodUrl, food, httpOptions);
+  }
+
+  delete(food : Food){
+    console.log(food);
+    return this.http.delete(this.foodUrl + '/' + food._id, httpOptions);
+  }
 }

@@ -45,6 +45,7 @@ import { FoodSelectComponent } from './food-select/food-select.component';
 import { FoodSelectSnackComponent } from './food-select-snack/food-select-snack.component';
 import { OrderCreateComponent } from './order-create/order-create.component';
 import { OrderManagerComponent } from './order-manager/order-manager.component';
+import { FoodListComponent } from './food-list/food-list.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { OrderManagerComponent } from './order-manager/order-manager.component';
     FoodSelectSnackComponent,
     OrderCreateComponent,
     OrderManagerComponent,
+    FoodListComponent,
   ],
   imports: [
     MatBadgeModule,
