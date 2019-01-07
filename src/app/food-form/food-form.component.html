@@ -1,15 +1,15 @@
 <div>
   <form [formGroup]="foodForm">
-    <h1>Food Form</h1>
+    <h1>Nuevo Producto</h1>
     <p>
       <mat-form-field>
-        <mat-label>Name</mat-label>
+        <mat-label>Nombre</mat-label>
         <input #foodName matInput formControlName="name">
     </mat-form-field>
     </p>
     <p>
       <mat-form-field>
-        <mat-label>Price</mat-label>
+        <mat-label>Precio</mat-label>
         <input matInput
             formControlName="price"
             type="number"
@@ -19,13 +19,13 @@
     </p>
     <p>
       <mat-form-field>
-        <mat-label>Description</mat-label>
+        <mat-label>Descripcion</mat-label>
         <textarea matInput cdkTextareaAutosize formControlName="description"
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="2"
                 cdkAutosizeMaxRows="5"></textarea>
       </mat-form-field>
     </p>
-    <button mat-button (click)="saveFood()">submit</button>
+    <button mat-button (click)="saveFood()">Guardar</button>
   </form>
 </div>

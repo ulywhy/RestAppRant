@@ -7,7 +7,6 @@ export class Order {
   total: number;
   itemsSet: Set<Item>;
   items : Array<Item>;
-  served: boolean;
   paid: boolean;
   date: any;
 
@@ -16,7 +15,6 @@ export class Order {
     this.total = 0;
     this.itemsSet = new Set<Item>([]);
     this.items = [];
-    this.served = false;
     this.paid = false;
     this.date = Date.now();
   }

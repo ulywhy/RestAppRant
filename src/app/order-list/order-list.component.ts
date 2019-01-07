@@ -48,11 +48,6 @@ export class OrderListComponent implements OnInit {
     this.openDialog(order);
   }
 
-  onServed(order : Order){
-    order.served = true;
-    this.updateOrder(order);
-  }
-
   onDelete(order : Order){
     this.orderService.delete(order).subscribe(
       res => {

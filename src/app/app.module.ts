@@ -37,7 +37,6 @@ import {MatBadgeModule} from '@angular/material/badge';
 /* Custom components */
 import { FoodFormComponent } from './food-form/food-form.component';
 import { FoodDisplayComponent } from './food-display/food-display.component';
-import { OrderDisplayComponent } from './order-display/order-display.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -51,7 +50,6 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
     AppComponent,
     FoodFormComponent,
     FoodDisplayComponent,
-    OrderDisplayComponent,
     NavBarComponent,
     OrderListComponent,
     WelcomeComponent,

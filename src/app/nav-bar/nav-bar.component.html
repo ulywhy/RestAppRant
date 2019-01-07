@@ -5,8 +5,8 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
 
-    <button mat-flat-button color="primary" routerLink="/">
-        {{ title }}!
+    <button mat-icon-button routerLink="/">
+        <mat-icon>home</mat-icon>
     </button>
 
     <span class="spacer"></span>
@@ -18,19 +18,19 @@
 
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/food/add">
-        <span><mat-icon>add</mat-icon> food</span>
+        <span><mat-icon>add</mat-icon> producto</span>
       </button>
       <button mat-menu-item routerLink="/order/new">
-        <span><mat-icon>add</mat-icon> order</span>
+        <span><mat-icon>add</mat-icon> orden</span>
       </button>
 
       <mat-divider></mat-divider>
 
       <button mat-menu-item routerLink="/food">
-        <span>foods</span>
+        <span><mat-icon>view_list</mat-icon> productos</span>
       </button>
       <button mat-menu-item routerLink="/order">
-        <span>orders</span>
+        <span>ordenes</span>
       </button>
     </mat-menu>
   </mat-toolbar-row>
