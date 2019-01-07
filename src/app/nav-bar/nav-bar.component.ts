@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  title = 'FoodApp';
-
   constructor(private location: Location) {
   }
 

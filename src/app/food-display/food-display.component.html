@@ -1,22 +1,7 @@
 <div>
 <div mat-dialog-title>
-  <mat-card class="example-card">
-    <mat-card-header>
-      <!--div mat-card-avatar class="example-header-image"></div-->
-      <mat-card-title class="dont-break-out">{{data.food.name}}</mat-card-title>
-      <mat-card-subtitle>
-        {{data.food.price | currency}}
-      </mat-card-subtitle>
-    </mat-card-header>
-    <!--img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"-->
-    <mat-card-content>
-      <p>
-        {{data.food.description}}
-      </p>
-    </mat-card-content>
-  </mat-card>
+    <span>{{data.food.name}} {{data.food.price | currency}}</span>
 </div>
-
 
 <div mat-dialog-content>
   <mat-form-field>
@@ -26,19 +11,23 @@
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="data.count"
-    matInput cdkFocusInitial
+    matInput cdkFfoodocusInitial
     (keyup)="updateItem()"
     (keydown)="submitItem($event)"
-    placeholder="quantity"
+    placeholder="cantidad"
     type="number">
     <button mat-button *ngIf="data.count != 0"
-    matSuffix mat-icon-button
-    aria-label="Clear" (click)="data.count = 0">
+    matSuffix mat-icon-button (click)="data.count = 0">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-button color="warn" [mat-dialog-close]="null">Cancel</button>
+<div mat-dialog-actions align="end">
+  <button mat-button color="warn" (click)="data.count = 0" [mat-dialog-close]="null">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button mat-button color="primary" [disabled]="data.count === 0" (click)="closeDialog()">
+    <mat-icon>check_circle</mat-icon>
+  </button>
 </div>

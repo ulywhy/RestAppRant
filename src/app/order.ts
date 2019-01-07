@@ -7,7 +7,6 @@ export class Order {
   total: number;
   itemsSet: Set<Item>;
   items : Array<Item>;
-  served: boolean;
   paid: boolean;
   date: any;
 

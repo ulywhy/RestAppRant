@@ -2,25 +2,16 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="tab-icon">schedule</mat-icon>
-      waiting
+      en espera
     </ng-template>
     <ng-template matTabContent>
-      <app-order-list [served]="false" [paid]="null"></app-order-list>
-    </ng-template>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon  class="tab-icon">fastfood</mat-icon>
-      served
-    </ng-template>
-    <ng-template matTabContent>
-      <app-order-list [served]="true" [paid]="false"></app-order-list>
+      <app-order-list [paid]="false"></app-order-list>
     </ng-template>
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon  class="tab-icon">monetization_on</mat-icon>
-      paid
+      pagadas
     </ng-template>
     <ng-template matTabContent>
       <app-order-list [paid]="true"></app-order-list>
