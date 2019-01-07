@@ -33,6 +33,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 /* Custom components */
 import { FoodFormComponent } from './food-form/food-form.component';
@@ -61,6 +62,7 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
   imports: [
     MatBadgeModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     FormsModule,
     MatDialogModule,
     MatSnackBarModule,
