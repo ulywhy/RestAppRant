@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class FoodService {
 
-  //foodUrl = 'https://rest-app-rant-server.herokuapp.com/rest/food';
+  //foodUrl = 'https://rest-app-rant-client.herokuapp.com/rest/food';
   foodUrl = 'http://192.168.1.68:5656/rest/food';
 
   constructor(
@@ -37,5 +37,16 @@ export class FoodService {
           console.log("Error occured");
         }
     );
+  }
+
+  foodUpdate(food : Food){
+    console.log("updating food");
+    console.log(food);
+    return this.http.put(this.foodUrl, food, httpOptions);
+  }
+
+  delete(food : Food){
+    console.log(food);
+    return this.http.delete(this.foodUrl + '/' + food._id, httpOptions);
   }
 }

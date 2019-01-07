@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 /* icons */
 import {MatIconModule} from '@angular/material/icon';
 /* material modules */
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
@@ -31,32 +32,35 @@ import {MatTableModule} from '@angular/material/table';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatBadgeModule} from '@angular/material/badge';
 
 /* Custom components */
 import { FoodFormComponent } from './food-form/food-form.component';
 import { FoodDisplayComponent } from './food-display/food-display.component';
-import { OrderDisplayComponent } from './order-display/order-display.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FoodSelectComponent } from './food-select/food-select.component';
-import { FoodSelectSnackComponent } from './food-select-snack/food-select-snack.component';
-import { OrderCreateComponent } from './order-create/order-create.component';
+import { OrderManagerComponent } from './order-manager/order-manager.component';
+import { FoodListComponent } from './food-list/food-list.component';
+import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FoodFormComponent,
     FoodDisplayComponent,
-    OrderDisplayComponent,
     NavBarComponent,
     OrderListComponent,
     WelcomeComponent,
     FoodSelectComponent,
-    FoodSelectSnackComponent,
-    OrderCreateComponent,
+    OrderManagerComponent,
+    FoodListComponent,
+    PaymentDialogComponent,
   ],
   imports: [
+    MatBadgeModule,
+    MatTabsModule,
     FormsModule,
     MatDialogModule,
     MatSnackBarModule,
@@ -82,7 +86,8 @@ import { OrderCreateComponent } from './order-create/order-create.component';
     AppRoutingModule,
   ],
   entryComponents: [
-    FoodDisplayComponent
+    FoodDisplayComponent,
+    PaymentDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

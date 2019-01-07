@@ -2,31 +2,37 @@ import { Item } from './item';
 
 export class Order {
 
+  _id: any;
   number: number;
-  private _total: number;
-  items: Set<Item>;
+  total: number;
+  itemsSet: Set<Item>;
+  items : Array<Item>;
+  paid: boolean;
+  date: any;
 
   constructor(){
     this.number = 0;
-    this.items = new Set<Item>([]);
+    this.total = 0;
+    this.itemsSet = new Set<Item>([]);
+    this.items = [];
+    this.paid = false;
+    this.date = Date.now();
   }
 
   addItem(item: Item){
     if(item.count === 0){
-      this.items.delete(item);
+      this.itemsSet.delete(item);
     }else{
-      this.items.add(item);
+      this.itemsSet.add(item);
     }
+    this.items = Array.from(this.itemsSet.values());
+    this.updateTotal();
   }
 
-  get total(): number{
-    let its = Array.from(this.items);
-    if(its.length == 0){
-       return 0;
-    }else{
-      return its.map(it => it.subtotal)
+  updateTotal(){
+    this.total = this.items.length === 0 ? 0 :
+      this.items.map(item => item.subtotal)
         .reduce((total, subtotal) => total + subtotal);
-    }
   }
 
 }

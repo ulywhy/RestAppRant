@@ -14,32 +14,35 @@ const httpOptions = {
 
 export class OrderService {
 
-  //orderUrl = 'https://rest-app-rant-server.herokuapp.com/rest/order';
+  //orderUrl = 'https://rest-app-rant-client.herokuapp.com/rest/order';
   orderUrl = 'http://192.168.1.68:5656/rest/order';
 
   constructor(
     private http : HttpClient) {
   }
 
-  getOrders(){
-    return this.http.get<Order[]>(this.orderUrl);
+  getOrders(query : any){
+    return this.http.get<Order[]>(this.orderUrl, {
+      'params' : query
+    });
   }
 
   saveOrder(order: Order){
+    console.log(order)
+    return this.http.post(this.orderUrl, order, httpOptions);
+  }
+
+  orderUpdate(order : Order){
+    console.log("updating order");
     console.log(order);
-    this.http.post(this.orderUrl, {
-      order: {
-        number: order.number,
-        total: order.total,
-        items: Array.from(order.items.values())
-      }}, httpOptions).subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err);
-        }
-    );
+    return this.http.put(this.orderUrl, order, httpOptions);
+  }
+
+  delete(order : Order){
+    console.log("deleting")
+    console.log(order);
+    return this.http.delete(this.orderUrl + '/' + order._id, httpOptions);
+
   }
 
 }
