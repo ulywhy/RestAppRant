@@ -45,6 +45,8 @@ import { FoodSelectComponent } from './food-select/food-select.component';
 import { OrderManagerComponent } from './order-manager/order-manager.component';
 import { FoodListComponent } from './food-list/food-list.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [],
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     FoodDisplayComponent,
