@@ -1,13 +1,15 @@
-<mat-toolbar class="app-toolbar">
+<mat-toolbar class="app-toolbar"  color="primary">
   <mat-toolbar-row>
 
-    <mat-icon (click)="goBack()">arrow_back</mat-icon>
-
-    <button mat-menu-item routerLink="/">
-      <span class="spacer">
-        {{ title }}!
-      </span>
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
     </button>
+
+    <button mat-icon-button routerLink="/">
+        <mat-icon>home</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
 
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
@@ -16,16 +18,19 @@
 
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/food/add">
-        <span><mat-icon>add</mat-icon> food</span>
+        <span><mat-icon>add</mat-icon> producto</span>
+      </button>
+      <button mat-menu-item routerLink="/order/new">
+        <span><mat-icon>add</mat-icon> orden</span>
       </button>
 
       <mat-divider></mat-divider>
 
       <button mat-menu-item routerLink="/food">
-        <span>foods</span>
+        <span><mat-icon>view_list</mat-icon> productos</span>
       </button>
       <button mat-menu-item routerLink="/order">
-        <span>orders</span>
+        <span>ordenes</span>
       </button>
     </mat-menu>
   </mat-toolbar-row>

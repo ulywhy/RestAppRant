@@ -1,0 +1,6 @@
+.mat-column-name, .mat-column-count{
+  text-align: left;
+ }
+.mat-column-subtotal {
+ text-align: right;
+}
