@@ -4,21 +4,32 @@ import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.compone
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { OrderService } from '../order.service';
 import { Order } from '../order';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {SelectionModel} from '@angular/cdk/collections';
+
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css']
+  styleUrls: ['./order-list.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 
 export class OrderListComponent implements OnInit {
 
-  @Input() served : boolean = null;
   @Input() paid : boolean = null;
-  newOrder: Order;
   orders: Order[];
+  expandedOrder: Order | null;
+  selection = new SelectionModel<Order>(true, []);
 
-  columnsToDisplay = ['quantity', 'food', 'subtotal'];
+  itemColumnsToDisplay = ['quantity', 'food', 'subtotal'];
+  columnsToDisplay = this.paid ? ['number', 'total'] : ['select', 'number', 'total'];
 
   constructor(
     private orderService : OrderService,
@@ -26,15 +37,28 @@ export class OrderListComponent implements OnInit {
   }
 
 
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.orders.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.orders.forEach(row => this.selection.select(row));
+  }
 
   ngOnInit() {
     this.getOrders();
+    this.columnsToDisplay = this.paid ? ['number', 'total'] : ['select', 'number', 'total'];
   }
 
   getOrders(){
     let query:any = {};
 
-    if(this.served !== null) query.served = this.served;
     if(this.paid !== null) query.paid = this.paid;
 
     this.orderService.getOrders(query)
@@ -44,19 +68,23 @@ export class OrderListComponent implements OnInit {
     });
   }
 
-  onCheckout(order : Order){
-    this.openDialog(order);
+  onCheckout(){
+    let ordersToPay = this.selection.selected;
+    console.log(ordersToPay)
+    this.openDialog(ordersToPay);
   }
 
-  onDelete(order : Order){
-    this.orderService.delete(order).subscribe(
-      res => {
-        //show warning message(ask if really wants to delete order)
-        this.getOrders();
-      },
-      err => {
-        console.log(err);
-      }
+  onDelete(){
+    this.selection.selected.forEach(order => {
+      this.orderService.delete(order).subscribe(
+        res => {
+          //show warning message(ask if really wants to delete order)
+          this.getOrders();
+        },
+        err => {
+          console.log(err);
+        }
+      )}
     );
   }
 
@@ -81,10 +109,8 @@ export class OrderListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        order.paid = true;
         console.log(result);
-        this.updateOrder(order);
-        console.log(order);
+        result.forEach(order => this.updateOrder(order));
       }
     });
   }
