@@ -1,51 +1,77 @@
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let order of orders">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        #{{order.number}}
-      </mat-panel-title>
-      <mat-panel-description>
-        Total: {{order.total | currency : '' : digitsInfo : '1.2-2'}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+<table mat-table
+       [dataSource]="orders" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef>
+      <button mat-stroked-button color="warn"
+        (click)="onDelete()" [disabled]="selection.selected.length === 0">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </th>
+    <td mat-cell *matCellDef="let order">#{{order.number}}</td>
+  </ng-container>
 
-      <table mat-table [dataSource]="order.items">
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef align="right">
+      <button mat-stroked-button  color="primary"
+        (click)="onCheckout()" [disabled]="selection.selected.length === 0">
+        <mat-icon>payment</mat-icon>
+      </button>
+    </th>
+    <td mat-cell *matCellDef="let order"> {{order.total | currency}} </td>
+  </ng-container>
 
-    <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-        <ng-container matColumnDef="quantity">
-          <th mat-header-cell *matHeaderCellDef> cantidad </th>
-          <td mat-cell *matCellDef="let item"> {{item._count}} </td>
-        </ng-container>
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row"  align="left">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let order" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-order-detail"
+           [@detailExpand]="order == expandedElement ? 'expanded' : 'collapsed'">
 
-        <ng-container matColumnDef="food">
-          <th mat-header-cell *matHeaderCellDef> producto </th>
-          <td mat-cell *matCellDef="let item"> {{item.food.name}} </td>
-        </ng-container>
+         <table mat-table [dataSource]="order.items">
 
-        <ng-container matColumnDef="subtotal">
-          <th mat-header-cell *matHeaderCellDef> subtotal </th>
-          <td mat-cell *matCellDef="let item"> {{item._subtotal | currency :'' : digitsInfo : '1.2-2' }} </td>
-        </ng-container>
+           <ng-container matColumnDef="quantity">
+             <th mat-header-cell *matHeaderCellDef> cantidad </th>
+             <td mat-cell *matCellDef="let item"> {{item._count}} </td>
+           </ng-container>
 
-        <!--tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr!-->
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-      </table>
+           <ng-container matColumnDef="food">
+             <th mat-header-cell *matHeaderCellDef> producto </th>
+             <td mat-cell *matCellDef="let item"> {{item.food.name}} </td>
+           </ng-container>
 
+           <ng-container matColumnDef="subtotal">
+             <th mat-header-cell *matHeaderCellDef> subtotal </th>
+             <td mat-cell *matCellDef="let item"> {{item._subtotal | currency :'' : digitsInfo : '1.2-2' }} </td>
+           </ng-container>
 
-      <mat-action-row  *ngIf="!order.paid">
-        <!--button mat-button disabled>{{order.date | date : 'EE M, hh:mm a' }}</button!-->
-        <!--button mat-button color="primary" (click)="nextStep()">
-          <mat-icon>add</mat-icon>
-        </button!-->
-        <button mat-button (click)="onDelete(order)">
-          <mat-icon color="accent">delete</mat-icon>
-        </button>
-        <button mat-button color="primary" (click)="onCheckout(order)">
-          <mat-icon>payment</mat-icon>
-        </button>
-      </mat-action-row>
+           <tr mat-row *matRowDef="let row; columns: itemColumnsToDisplay;"></tr>
+         </table>
 
-
-  </mat-expansion-panel>
-</mat-accordion>
+      </div>
+    </td>
+  </ng-container>
+  <div  *ngIf="!paid">
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  </div>
+<tr mat-row *matRowDef="let order; columns: columnsToDisplay;"
+      class="example-order-row"
+      [class.example-expanded-row]="expandedElement === order"
+      (click)="expandedElement = expandedElement === order ? null : order">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+</table>

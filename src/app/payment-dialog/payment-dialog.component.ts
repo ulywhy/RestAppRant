@@ -15,24 +15,30 @@ export class PaymentDialogComponent implements OnInit {
   change : number;
   payment : number;
   ready : boolean;
+  amount : number;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Order,
+    @Inject(MAT_DIALOG_DATA) public data: Array<Order>,
     public dialogRef: MatDialogRef<PaymentDialogComponent>) {
       this.change = 0;
       this.ready = false;
       this.payment = 0;
+      this.amount = data.map(order => order.total)
+        .reduce((amount, total) => amount + total);
+
     }
 
   ngOnInit() {
   }
 
   updateChange(){
-    if(this.payment >= this.data.total){
-      this.change = this.payment - this.data.total;
+    if(this.payment >= this.amount){
+      this.change = this.payment - this.amount;
       this.ready = true;
+      this.data.forEach(order => order.paid = true);
     }else{
       this.ready = false;
+      this.data.forEach(order => order.paid = false);
     }
   }
 
@@ -53,7 +59,7 @@ export class PaymentDialogComponent implements OnInit {
   }
 
   closeDialog(): void{
-    this.dialogRef.close(this.change);
+    this.dialogRef.close(this.data);
   }
 
 
